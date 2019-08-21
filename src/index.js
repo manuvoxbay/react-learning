@@ -1,9 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-setInterval(function(){
-    ReactDOM.render(
-        <h1>Time Noe:- {new Date().toLocaleTimeString()}</h1>,
-        document.getElementById('root')
-    );
-},1000)
+class Inc extends React.Component
+{
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            counter: 0
+        }
+    }
+    incrementer = (e) =>
+    {
+        e.preventDefault();
+        this.setState({
+            counter: this.state.counter + 1
+        })
+
+    }
+
+    render()
+    {
+        return <a href="https://google.com" onClick={this.incrementer}>Counter {this.state.counter}</a>
+    }
+}
+
+ReactDOM.render(
+    <Inc/>,
+    document.getElementById('root')
+)
