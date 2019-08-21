@@ -1,31 +1,38 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-class Inc extends React.Component
+function Changer(props)
+{
+    if(props.val)
+    {
+        return <h3>New Text changed By Me</h3>
+    }
+    return <h3>First Text before change</h3>
+}
+class Btn extends React.Component
 {
     constructor(props)
     {
-        super(props)
+        super(props);
         this.state = {
-            counter: 0
+            value:true,
         }
     }
-    incrementer = (e) =>
-    {
-        e.preventDefault();
+    changer = (e) => {
         this.setState({
-            counter: this.state.counter + 1
-        })
-
+            value: !this.state.value
+        });
     }
-
     render()
     {
-        return <a href="https://google.com" onClick={this.incrementer}>Counter {this.state.counter}</a>
+        return <div>
+            <button onClick={this.changer}>Change Test</button>
+            <Changer val={this.state.value}/>
+        </div>
     }
 }
 
 ReactDOM.render(
-    <Inc/>,
+    <Btn/>,
     document.getElementById('root')
 )
