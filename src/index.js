@@ -1,38 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Changer(props)
-{
-    if(props.val)
-    {
-        return <h3>New Text changed By Me</h3>
-    }
-    return <h3>First Text before change</h3>
-}
-class Btn extends React.Component
+class Former extends React.Component
 {
     constructor(props)
     {
-        super(props);
+        super(props)
         this.state = {
-            value:true,
-        }
+            value:""
+        };
     }
-    changer = (e) => {
+
+    handleChange = (e) => 
+    {
         this.setState({
-            value: !this.state.value
+            value: e.target.value
         });
     }
     render()
     {
-        return <div>
-            <button onClick={this.changer}>Change Test</button>
-            <Changer val={this.state.value}/>
-        </div>
+        return <form>
+            <textarea onChange={this.handleChange} value={this.state.value}/>
+            <h5>{this.state.value}</h5>
+        </form>
     }
 }
 
 ReactDOM.render(
-    <Btn/>,
+    <Former/>,
     document.getElementById('root')
 )
