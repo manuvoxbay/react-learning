@@ -5,23 +5,25 @@ class Former extends React.Component
 {
     constructor(props)
     {
-        super(props)
+        super(props);
         this.state = {
-            value:""
-        };
+            value:"manu"
+        }
     }
-
-    handleChange = (e) => 
+    handleChange=(e) =>
     {
-        this.setState({
-            value: e.target.value
-        });
+        console.log("inside the method")
     }
     render()
     {
         return <form>
-            <textarea onChange={this.handleChange} value={this.state.value}/>
-            <h5>{this.state.value}</h5>
+            <select value={this.state.value} onChange={this.handleChange}>
+                <option value="">Select</option>
+                <option value="manu">Manu</option>
+                <option value="anu">Anu</option>
+                <option value="anju">Anju</option>
+                <option value="kunju">kunju</option>
+            </select>
         </form>
     }
 }
