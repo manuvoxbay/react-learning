@@ -1,34 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Weather from './weather';
+import Spinner from './spinner';
 
 class Starter extends React.Component
 {
-    constructor(props)
-    {
-        super(props);
-        this.state = {
+   state = { 
             lat:null,
             errorMsg:null
         }
 
-        navigator.geolocation.watchPosition(
-            (position) => {
-                this.setState({
-                    lat:position.coords.latitude
-                })
-            },
-            (err) => {
-                console.log(err.message);    
-                this.setState({
-                    errorMsg:err.message
-                })
+    componentDidMount()
+    {
+            navigator.geolocation.watchPosition(
+                (position) => {
+                    this.setState({
+                        lat:position.coords.latitude
+                    })
+                },
+                (err) => {
+                    console.log(err.message);    
+                    this.setState({
+                        errorMsg:err.message
+                    })
             });
     }
-    render()
+
+    renderContent()
     {
         if(this.state.lat && !this.state.errorMsg)
         {
-            return <div> <h2>Lattiude: {this.state.lat} </h2><br/></div>
+            return (<div>
+                <Weather lat={this.state.lat}/>
+                </div>
+            );
         }
         if(!this.state.lat && this.state.errorMsg)
         {
@@ -40,7 +45,17 @@ class Starter extends React.Component
         }
 
         return (
-            <div> <font color="green">Loading . ..</font></div>
+            <Spinner/>
+        );
+    }
+
+
+    render()
+    {
+        return (
+            <div>
+                {this.renderContent()}
+            </div>
         );
 
     }

@@ -1,0 +1,35 @@
+.left-icon {
+    position:absolute;
+    top:10px;
+    left:10px;
+
+}
+
+.right-icon {
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+
+.weather {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+
+.winter {
+    background-color:skyblue;
+}
+
+.summer {
+    background-color:orange;
+}
+
+.weather.winter i {
+    color:white;
+}
+
+.weather.summer i {
+    color:red;
+}
